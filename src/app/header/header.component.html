@@ -1,0 +1,17 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-toolbar color="primary">
+  <span> <a routerLink="">PROFI</a></span>
+  <span class="spacer"></span>
+  <span *ngIf="userName != ''" >Hello, {{userName}}</span>
+  <button mat-button (click)="openLoginDialog()">Enter</button>
+  <button mat-button (click)="onCreateCategory()">Create Category</button>
+  <button mat-button (click)="onUpdateCategory()">Update Category</button>
+  <span><a routerLink='/personal' routerLinkActive="active">Personal Page</a></span>
+
+</mat-toolbar>
+ <div class="container">
+  <div class="leftColumn"><app-categories></app-categories></div>
+<div class="centerColumn"><router-outlet></router-outlet></div>
+  <div class="rightColumn">dd</div>
+</div>
+

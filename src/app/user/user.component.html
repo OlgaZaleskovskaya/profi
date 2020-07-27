@@ -1,0 +1,3 @@
+<button (click)="onCreatePost()">Add post</button>
+<app-create-post-component *ngIf="isCreatePost" [categories]="categories" (onPostCreated)="onPostCreated($event)">
+</app-create-post-component>

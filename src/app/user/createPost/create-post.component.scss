@@ -1,0 +1,36 @@
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: 1rem auto;
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+div.image {
+  height: 5rem;
+  margin: 1rem 0;
+  img {
+    height: inherit;
+    object-fit: contain;
+  }
+}
+
+span.tagList::after {
+  content: ", ";
+}
+
+span.tagList:last-child::after {
+  content: "";
+}
+
+div.imagesTest{
+  width: 100%;
+  img{
+    width:20%;
+  }
+}

@@ -1,0 +1,35 @@
+p.flex{
+  display: flex;
+  font-size: 0.8em;
+  margin:0px auto;
+  background-color: yellowgreen;
+  color: grey;
+   span.spacer {
+    flex: 1 1 auto;
+  }
+  button {
+    font-size: 0.8em;
+  }
+}
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+input[type="file"]{
+  visibility: hidden;
+}
+
+.image-preview {
+  height: 5rem;
+  margin: 1 rem 0;
+
+}
+
+.image-preview img {
+  height: 100%;
+}
+
+div.actions{
+  background-color: cornsilk;
+}

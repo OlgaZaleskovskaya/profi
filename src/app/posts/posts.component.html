@@ -1,0 +1,36 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<ng-container *ngIf="!isLoading && postList.length>0">
+
+  <mat-card *ngFor="let post of postList">
+    <p class="meta"><span>{{post.authorId}}&nbsp;</span><span class="sp"></span><span>{{post.date | date}}</span></p>
+    <p class="meta"><span>HashTags:&nbsp;</span><span class="sp"></span><span [class.currentTag]="tag == currentTag"
+        *ngFor="let tag of post.tags">#{{tag | lowercase}}</span></p>
+    <mat-card-header>
+      <mat-card-subtitle>{{post.title}}</mat-card-subtitle>
+    </mat-card-header>
+    <div class="post-image" [id]="post.id">
+        <app-images [imagesData]="post.imageData"></app-images>
+    </div>
+    <mat-card-content>
+      {{post.content}}
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <button mat-stroked-button (click)="onAddComment(post)">Add
+        comment</button>
+      <button [disabled]="post.comments.length == 0" mat-button (click)="onGetComments()">Comments:
+        {{post.comments.length}}
+      </button>
+    </mat-card-actions>
+    <mat-divider></mat-divider>
+    <app-create-comment (onCommentCreated)="onCommentCreated($event)"
+      *ngIf="isCreateComment && (post.id == currentPostId)"></app-create-comment>
+    <mat-card-content *ngIf="isComments" @myInsertRemoveTrigger>
+      <app-comments [commentList]="post.comments"></app-comments>
+    </mat-card-content>
+
+  </mat-card>
+</ng-container>
+<mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions"
+  (page)="onPageChanged($event)" *ngIf="postList.length > 0"></mat-paginator>
+<p class="info-text" *ngIf="postList.length <= 0 && !isLoading">No posts added</p>

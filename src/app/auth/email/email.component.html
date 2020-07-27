@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <span mat-dialog-close class="material-icons">
+    clear
+  </span>
+  <mat-card>
+    <mat-card-subtitle>Enter email or enter via FB</mat-card-subtitle>
+    <mat-card-content>
+      <form #form="ngForm" (submit)="onSubmit(form)">
+        <mat-form-field>
+          <input matInput name="email" [(ngModel)]="email" type="email" placeholder="E-mail" #emailInput="ngModel"
+            required email>
+          <mat-error *ngIf="emailInput.invalid">Please enter your e-mail</mat-error>
+        </mat-form-field>
+        <div>
+          <button type="submit" mat-button>
+            Next
+          </button>
+          <button mat-button  [mat-dialog-close]="email">
+            Create account
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div>
+  <button mat-button>
+    <mat-icon>input</mat-icon>
+  </button>
+  <button mat-button>
+    <mat-icon>home</mat-icon>
+  </button>
+  <button mat-button>
+    <mat-icon>home</mat-icon>
+  </button>
+</div>

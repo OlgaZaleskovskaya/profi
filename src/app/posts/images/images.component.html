@@ -1,0 +1,31 @@
+<!--
+<div #myDiv class="imageContainer" [ngClass]="mainClass" [style.width]="getTotalWidth()"
+  [style.height]="getTotalHeight()">
+  <div *ngFor="let item of images; let i = index" [ngClass]="'item'+ i" [style.background-image]="item.path">
+  <div *ngFor="let item of images; let i = index" [ngClass]="'item'+ i">
+    <img [src]="item.path">
+  </div>
+
+-->
+  <div class="test">
+    <div *ngFor="let item of images; let i = index">
+      <img [src]="item.path">
+    </div>
+  </div>
+  <div>
+
+
+    <h2>object-fit: cover</h2>
+    <img src="https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png" alt="MDN Logo" class="cover"/>
+
+    <img src="https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png" alt="MDN Logo" class="cover narrow"/>
+
+    <img src="https://www.w3schools.com/css/paris.jpg" alt="MDN Logo" class="cover narrow">
+
+    <img src="http://localhost:3000/images/ffff0-1595863787777.jpg" alt="MDN Logo"  class="cover">
+    <img src="http://localhost:3000/images/ffff1-1595863787816.jpg" alt="MDN Logo"  class="cover narrow">
+    <div class="test1" [style.background-image]="path1"></div>
+    <div  class="test1" [style.background-image]="path2"></div>
+
+
+  </div>

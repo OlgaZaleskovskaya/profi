@@ -1,0 +1,8 @@
+<div class="wrapper" *ngFor="let comment of commentList| slice:start:end; let i=index">
+  <p class="meta"><span>{{comment.authorId}}</span><span class="spacer"></span><span>{{comment.date | date}}</span></p>
+  <mat-divider [inset]="true"></mat-divider>
+  <p class="content">{{comment.content}}</p>
+</div>
+<button mat-button type ="button" *ngIf="commentList.length>end" (click)="onMoreComments()"> More comments</button>
+
+

@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: (5px);
+  margin-top: 5px;
+}
+
+div.wrapper {
+  font-size: 0.8em;
+  margin: 10px auto;
+  border-bottom: 5px solid  rgb(216, 216, 216);
+  padding:1em;
+  p.meta {
+    display: flex;
+    font-style: italic;
+
+    span.spacer {
+      flex: 1 0 auto;
+    }
+  }
+}

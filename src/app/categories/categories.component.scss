@@ -1,0 +1,34 @@
+.active {
+  background-color: rgba(250, 128, 114, 0.626);
+}
+mat-expansion-panel-header {
+  // font-size: 0.9rem;
+}
+mat-list {
+ // margin-left: 1rem;
+  padding: 3px 1rem;
+  a {
+    text-decoration: none;
+    font-size: 0.7rem;
+    cursor: pointer;
+    margin: 1rem 0;
+  }
+
+}
+
+mat-list:hover{
+  background-color: papayawhip;
+}
+
+mat-list.currentTag{
+  background-color: rgb(190, 190, 214);
+}
+
+.active {
+  background-color: rgb(190, 190, 214);
+}
+
+.preventClick {
+  background-color: hotpink;
+  pointer-events: none;
+}

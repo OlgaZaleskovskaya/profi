@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Create Category</mat-label>
+        <input matInput type="text"  formControlName="category">
+      </mat-form-field>
+      <!--    <mat-error *ngIf="categoryForm.get('category').invalid && categoryForm.get('category').touched"
+        [ngClass]="'error'">
+        Category required.
+      </mat-error> -->
+      <div class="subcategories" formArrayName="subCategories">
+        <button type="button" mat-flat-button color="primary" (click)="onAddSubCategory()">
+          Add subCategory
+        </button>
+        <div *ngFor="let sub of categoryForm.get('subCategories')['controls']; let i=index">
+          <input type="text" [formControlName]="i" placeholder="subCategory"><span (click)="onRemoveItem(i)"class="material-icons">
+            clear
+            </span>
+        </div>
+      </div>
+      <div>
+        <button type="submit" mat-flat-button color="accent">
+          OK
+        </button>
+      </div>
+    </form>
+
+  </mat-card-content>
+</mat-card>

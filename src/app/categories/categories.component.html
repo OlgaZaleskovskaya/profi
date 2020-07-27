@@ -1,0 +1,19 @@
+<button mat-button (click)="onRemoveCategory()">Remove Category</button>
+<button mat-button (click)="onRemoveFilters()">Remove Filters</button>
+ <mat-accordion>
+  <mat-expansion-panel
+   (click)="onSelectCategory(i,category)" *ngFor="let category of categoriesList; let i=index;">
+    <mat-expansion-panel-header [ngClass]="{active: i == currentCategoryIndex}">
+      {{category.name | uppercase}}
+    </mat-expansion-panel-header>
+    <mat-list *ngFor="let tag of category.tags" dense [class.currentTag]="currentTag == tag.name">
+       <a  role="button" (click)="onTagSelected(tag.name)" matLine >{{tag.name | capitalLetter}} </a>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+
+
+
+
