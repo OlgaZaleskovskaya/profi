@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterViewInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { identifierModuleUrl } from '@angular/compiler';
+
 
 export interface ImgData {
   path: any;
@@ -53,9 +53,9 @@ export class ImagesComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.path1 =   this.sanitizer.bypassSecurityTrustStyle('url(http://localhost:3000/images/ffff0-1595863787777.jpg)');
+//this.path1 =   this.sanitizer.bypassSecurityTrustStyle('url(http://localhost:3000/images/ffff0-1595863787777.jpg)');
 
-    this.path2 =   this.sanitizer.bypassSecurityTrustStyle('url(http://localhost:3000/images/ffff1-1595863787816.jpg)');
+  //  this.path2 =   this.sanitizer.bypassSecurityTrustStyle('url(http://localhost:3000/images/ffff1-1595863787816.jpg)');
 
     this.totalWidth = 486;
     this.isOpen = false;
@@ -103,20 +103,7 @@ export class ImagesComponent implements OnInit {
   }
 
 
-  private defineTotalHeight() {
-    let h: number
-    switch (this.imagesData.length) {
-      case 2:
-        this.totalHeight = this.getRowHeight(this.imagesData[0], this.imagesData[1]);
-        break;
-      case 3:
-        this.totalHeight = this.getRowHeight(this.imagesData[1], this.imagesData[2]) * 2;
-        break;
-      default:
-      // code block
-    }
 
-  }
 
   public getTotalHeight(): string {
     return this.totalHeight + 'px'
@@ -173,6 +160,11 @@ export class ImagesComponent implements OnInit {
       default:
       // code block
     }
+  }
+
+
+  toImages(){
+
   }
 
 

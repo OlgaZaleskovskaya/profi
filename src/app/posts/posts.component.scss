@@ -28,8 +28,10 @@ mat-spinner {
 }
 
 div.post-image {
-  width: 526px;
+  width: 486px;
   margin: auto;
+  border: 1px solid green;
+  box-sizing: content-box;
 }
 p.meta {
   width: auto;

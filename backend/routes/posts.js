@@ -1,9 +1,11 @@
 const express = require('express');
 const multer = require("multer");
 var sizeOf = require('image-size');
+var fs = require('fs');
+const sharp = require('sharp');
 const router = express.Router();
 const Post = require('../models/post');
-const { getSyntheticLeadingComments } = require('typescript');
+
 
 const MIME_TYPE_MAP = {
   'image/png': 'png',
@@ -18,7 +20,7 @@ const storage = multer.diskStorage({
     if (isValid) {
       error = null;
     }
-    cb(error, "backend/images");
+    cb(error, "backend/images/small");
   },
   filename: (req, file, cb) => {
     const name = file.originalname.toLowerCase().split(' ').join('-');
@@ -52,35 +54,42 @@ const storage = multer.diskStorage({
 }); */
 
 router.post("", multer({ storage: storage }).array("images[]", 5), (req, res, next) => {
+
+
   let imagesData = [];
   const url = req.protocol + '://' + req.get("host");
   req.files.forEach(item => {
+    console.log('filename', item.filename);
+    console.log('filename', item);
+    sharp(item.path)
+      .rotate()
+      .resize(720, 960)
+      .jpeg({ quality: 80 })
+
+      .toFile("backend/images/small/small_" + item.filename, function (err) {
+        console.log('err', err);
+      });
+
     let path = `${item.destination}/${item.filename}`;
     let dimensions = sizeOf(path);
-    console.log("dimentions",  dimensions);
+    console.log('dimentions', dimensions);
     let data;
-/* if(dimensions.orientation == 6){
-   data = {path: (url + "/images/" + item.filename), width: dimensions.height, height: dimensions.width};
-} else {} */
-   data = {path: (url + "/images/" + item.filename), width: dimensions.width, height: dimensions.height};
-
-
+    data = { path: (url + "/images/small/small_" + item.filename), width: dimensions.width, height: dimensions.height };
     imagesData.push(data);
-    console.log('my data', imagesData );
   }
   );
 
 
   const post = new Post({
-   title: req.body.title,
-   content: req.body.content,
-   authorId: req.body.authorId,
-   imageData: imagesData,
-   tags: JSON.parse(req.body.tags),
-   date: Date.now(),
-   comments: []
- });
- post.save().then(createdPost => {
+    title: req.body.title,
+    content: req.body.content,
+    authorId: req.body.authorId,
+    imageData: imagesData,
+    tags: JSON.parse(req.body.tags),
+    date: Date.now(),
+    comments: []
+  });
+  post.save().then(createdPost => {
     res.status(201).json({
       message: "Post added",
       post: {

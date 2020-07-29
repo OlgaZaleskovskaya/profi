@@ -1,20 +1,17 @@
- div.imageContainer {
+div.imageContainer {
   margin: auto;
   display: grid;
+  width:100%;
 
   div {
-    background-size: cover;
-    box-sizing: content-box;
-    background-position: center;
     overflow: hidden;
-    border: 3px solid grey;
     box-sizing: border-box;
     position: relative;
     img {
       position: relative;
-
-      width: 243px;
-      height: 243px;
+      border: 1px solid white;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
 
       //  height: inherit;
@@ -46,6 +43,7 @@ div.two {
 }
 
 div.threeV {
+  outline: pink solid 3px;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
   div.item0 {
@@ -63,6 +61,7 @@ div.threeV {
 }
 
 .threeH {
+  outline: rgb(130, 218, 79) solid 3px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 2fr 1fr;
 
@@ -206,7 +205,8 @@ div.threeV {
 
 div.test {
   width: 100%;
-  height: auto;
+  height: 300px;
+  border: 1px solid grey;
   div {
     width: 256px;
     height: 256px;
@@ -216,41 +216,6 @@ div.test {
       height: 256px;
       border: 2px solid yellow;
       object-fit: cover;
-
     }
   }
 }
-
-div {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  height: 940px;
-  border: 1px solid grey;
-}
-
-div.test1 {
-  width: 200px;
-  height: 200px;
-  margin-top: 10px;
-  background-size: contain;
-  border: 2px solid red;
-  //background-position: center;
-}
-
-.narrow {
-  width: 100px;
-  height: 150px;
-  margin-top: 10px;
-}
-
-.cover {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-}
-
-
-
-
