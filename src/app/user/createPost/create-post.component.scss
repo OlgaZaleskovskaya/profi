@@ -29,8 +29,17 @@ span.tagList:last-child::after {
 }
 
 div.imagesTest{
-  width: 100%;
+  width: 150px;
+  height: 100px;
   img{
-    width:20%;
+    width: 150px;
+  height: 150px;
+  object-fit: cover;
+
+
   }
 }
+
+
+
+

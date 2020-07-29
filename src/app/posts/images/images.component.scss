@@ -1,4 +1,4 @@
-div.imageContainer {
+ div.imageContainer {
   margin: auto;
   display: grid;
 
@@ -208,20 +208,18 @@ div.test {
   width: 100%;
   height: auto;
   div {
-    width:256px;
-    height:256px;
+    width: 256px;
+    height: 256px;
     overflow: hidden;
     img {
-      width:256px;
-      height:256px;
-
+      width: 256px;
+      height: 256px;
+      border: 2px solid yellow;
       object-fit: cover;
 
     }
   }
 }
-
-
 
 div {
   display: flex;
@@ -232,20 +230,13 @@ div {
   border: 1px solid grey;
 }
 
-img {
-  width: 150px;
-  height: 100px;
-  border: 1px solid #000;
-}
-
-div.test1{
-  width: 100px;
-  height: 150px;
+div.test1 {
+  width: 200px;
+  height: 200px;
   margin-top: 10px;
- background-size: cover;
- border: 2px solid red;
- background-position: center;
-
+  background-size: contain;
+  border: 2px solid red;
+  //background-position: center;
 }
 
 .narrow {
@@ -254,9 +245,12 @@ div.test1{
   margin-top: 10px;
 }
 
-
 .cover {
+  width: 200px;
+  height: 200px;
   object-fit: cover;
 }
+
+
 
 

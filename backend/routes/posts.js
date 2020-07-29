@@ -56,7 +56,6 @@ router.post("", multer({ storage: storage }).array("images[]", 5), (req, res, ne
   const url = req.protocol + '://' + req.get("host");
   req.files.forEach(item => {
     let path = `${item.destination}/${item.filename}`;
-
     let dimensions = sizeOf(path);
     console.log("dimentions",  dimensions);
     let data;

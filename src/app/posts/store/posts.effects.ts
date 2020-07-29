@@ -30,6 +30,7 @@ export class PostsEffects {
         return this.http.get<{ message: string, posts: any[], maxPosts: number }>(MY_URL + 'posts' + queryParams)
           .pipe(
             map(res => {
+              console.log('post', res);
               const transformedPosts = res.posts.map(post => {
                 const transformedComments = post.comments.map(comment => { return { authorId: comment.authorId, date: comment.date, content: comment.content, id: comment._id } });
                 const smth = new Post(post._id,

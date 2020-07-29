@@ -70,6 +70,7 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new PostsActions.GetPosts({ postsPerPage: this.postsPerPage, currentPage: this.currentPage, currentTag: this.currentTag }));
     this.postsSubscription = this.store.select('posts').subscribe(postState => {
       this.postList = [...postState.posts];
+
       this.totalPosts = postState.maxPosts;
       this.isLoading = false;
     }
