@@ -7,6 +7,7 @@ import { FormGroup, FormControl, Validators, FormArray, NgForm, FormGroupDirecti
 import { Category } from 'src/app/categories/category.model';
 import { MatSelectChange } from '@angular/material/select';
 import { mimeType } from './mime-type.validator';
+import { maxImgQuantityValidator } from './maxImgQuantity.validator';
 
 interface SelectedCategory {
   categoryName: string, tags: string[];
@@ -44,7 +45,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
 
   files = [];
 
-
+  maxImageQuantity = 5;
 
   constructor(private store: Store<fromApp.AppState>
   ) { }
@@ -69,11 +70,12 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       }),
       image: new FormControl(null, {
         validators: [Validators.required],
-        asyncValidators: [mimeType]
+        //  asyncValidators: [mimeType]
       }),
       images: new FormControl(null, {
-        //validators: [Validators.required],
-        //     asyncValidators: [mimeType]
+     /*    validators: [maxImgQuantityValidator(this.maxImageQuantity)], */
+        //  asyncValidators: [mimeType]
+
       })
     });
 
@@ -158,7 +160,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     this.form.markAsUntouched();
   }
 
-  onCancelCreatePost(){
+  onCancelCreatePost() {
     this.onReset();
     this.onPostCreated.emit(null);
   }

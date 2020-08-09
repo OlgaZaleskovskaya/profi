@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
@@ -7,6 +7,8 @@ import { Category } from '../categories/category.model';
 import * as PostsActions from '../posts/store/posts.actions';
 import { FormGroup } from '@angular/forms';
 import { Post, CreatePostData } from '../posts/post.model';
+import { Subscription } from 'rxjs';
+import { FetchedUser } from '../auth/auth.model';
 
 
 @Component({
@@ -14,14 +16,19 @@ import { Post, CreatePostData } from '../posts/post.model';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
+  categorySubscription: Subscription;
+  authSubscription: Subscription;
+  user: FetchedUser;
   categories: Category[];
   isCreatePost = false;
 
   constructor(private store: Store<fromApp.AppState>, public dialog: MatDialog,) { }
 
+
   ngOnInit(): void {
-    this.store.select('categories').subscribe(state => this.categories = state.categoriesList);
+    this.categorySubscription = this.store.select('categories').subscribe(state => this.categories = state.categoriesList);
+    this.authSubscription = this.store.select('auth').subscribe(state => this.user = state.user);
   }
 
   onCreatePost() {
@@ -44,4 +51,10 @@ export class UserComponent implements OnInit {
       this.store.dispatch(new PostsActions.AddPostStart(postData))
     }
   }
+
+  ngOnDestroy(): void {
+    this.categorySubscription.unsubscribe();
+    this.authSubscription.unsubscribe();
+  }
+
 }

@@ -1,0 +1,41 @@
+<h4>Sign Up</h4>
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="onSignup(signupForm)" *ngIf="!isLoading" #signupForm="ngForm">
+    <mat-form-field>
+      <input matInput name="name" ngModel #nameInput="ngModel" type="text" placeholder="Name" required>
+      <mat-error *ngIf="nameInput.invalid">Please enter your name</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput name="email" ngModel #emailInput="ngModel" type="email" placeholder="E-Mail" required email>
+      <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select your role</mat-label>
+      <mat-select required [(value)]="selectedRole">
+        <mat-option *ngFor="let role of roles" [value]="role">
+          {{role}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput name="password" ngModel #passwordInput="ngModel" type="password" required placeholder="Password">
+      <mat-error *ngIf="passwordInput.invalid">Please enter a password.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput name="passwordConfirm" appPasswordConfirmValidator="password" ngModel
+        #passwordConfirmInput="ngModel" type="password" required placeholder="Confirm Password">
+      <mat-error *ngIf="passwordConfirmInput.errors?.required">Please confirm password.</mat-error>
+      <mat-error *ngIf="passwordConfirmInput.touched && passwordConfirmInput.errors?.notEqual">Password and Confirm
+        Password do not match</mat-error>
+    </mat-form-field>
+    <div class="actions">
+      <button mat-raised-button color="accent" type="submit">Sign Up</button>
+      <button mat-raised-button color="primary" routerLink="" type="button">Cancel</button>
+    </div>
+  </form>
+</mat-card>

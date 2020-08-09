@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { User } from '../auth.model';
+import { NewUser, User, FetchedUser } from '../auth.model';
 
 
 export const LOGIN_START = '[Auth] Login Start';
@@ -7,6 +7,9 @@ export const LOGIN_FAILED = '[Auth] Login Failed';
 export const LOGIN = '[Auth] Login';
 export const LOGOUT = '[Auth] Logout';
 export const SIGN_UP_START = '[Auth] SignUp Start';
+export const SIGN_UP = '[Auth] SignUp';
+export const REMOVE_MESSAGE ='[Auth] RemoveMessage';
+
 
 
 export class LoginStart implements Action {
@@ -21,19 +24,27 @@ export class LoginFailed implements Action {
 
 export class Login implements Action {
   readonly type = LOGIN;
-  constructor(public payload: { user: User }) { };
+  constructor(public payload:  {message: string, user: FetchedUser}) { };
 }
 
 export class SignUpStart implements Action {
   readonly type = SIGN_UP_START;
-  constructor(public payload: { user: User }) { };
+  constructor(public payload: { user: NewUser }) { };
 }
 
+export class SignUp implements Action {
+  readonly type = SIGN_UP;
+  constructor(public payload: { message: string, user: string}) { };
+}
 
 export class Logout implements Action {
   readonly type = LOGOUT;
-  constructor(public payload: { userId: string }) {
-  }
+
+}
+
+export class RemoveMessage implements Action {
+  readonly type = REMOVE_MESSAGE;
+
 }
 
 
@@ -41,5 +52,7 @@ export type AuthActions = LoginStart
   | LoginFailed
   | Login
   | Logout
-  | SignUpStart;
+  | SignUpStart
+  | SignUp
+  | RemoveMessage;
 

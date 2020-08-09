@@ -2,6 +2,7 @@ div.imageContainer {
   margin: auto;
   display: grid;
   width:100%;
+  cursor: pointer;
 
   div {
     overflow: hidden;
@@ -42,8 +43,34 @@ div.two {
   }
 }
 
+div.twoV {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+
+  div.item0 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+  }
+  div.item1 {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+  }
+}
+div.twoH {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  div.item0 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+  }
+  div.item1 {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+  }
+}
+
 div.threeV {
-  outline: pink solid 3px;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
   div.item0 {
@@ -61,7 +88,6 @@ div.threeV {
 }
 
 .threeH {
-  outline: rgb(130, 218, 79) solid 3px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 2fr 1fr;
 

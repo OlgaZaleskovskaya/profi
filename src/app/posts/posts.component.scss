@@ -4,11 +4,18 @@ mat-card {
   padding: 0 0.5rem;
   mat-card-subtitle {
     font-size: 0.9em;
-    background-color: rgb(49, 250, 49);
   }
   mat-card-content {
-    background-color: rgb(235, 222, 39);
-    //   padding: 0 1rem;
+    height: auto;
+    p {
+
+      max-height: 200px;
+      overflow: hidden;
+      padding: 5px;
+      text-overflow: ellipsis;
+      border: 1px solid grey;
+      margin: 1rem auto;
+    }
   }
   mat-card-actions {
     padding: 0;
@@ -30,7 +37,6 @@ mat-spinner {
 div.post-image {
   width: 486px;
   margin: auto;
-  border: 1px solid green;
   box-sizing: content-box;
 }
 p.meta {

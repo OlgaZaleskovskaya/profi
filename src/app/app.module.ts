@@ -24,21 +24,24 @@ import { CreateCategoryComponent } from './categories/createCategory/create-cate
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { CategoriesModule } from './categories/categories.module';
+import { GalleryComponent } from './posts/gallery/gallery.component';
 
-//import { CategoriesModule } from './categories/categories.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    CreateCategoryComponent
+    CreateCategoryComponent,
+    GalleryComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    //     AngularMaterialModule,
+    AngularMaterialModule,
     ReactiveFormsModule,
     CategoriesModule,
     SharedModule,
@@ -47,7 +50,11 @@ import { CategoriesModule } from './categories/categories.module';
     SharedModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AuthEffects, CategoriesEffects, PostsEffects]),
+
   ],
+  exports: [ ],
+
+  entryComponents: [GalleryComponent],
 
   providers: [],
   bootstrap: [AppComponent]

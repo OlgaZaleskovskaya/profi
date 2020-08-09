@@ -1,13 +1,12 @@
 import { Actions, ofType, Effect } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { switchMap, catchError, map, mergeMap, filter, tap } from 'rxjs/operators';
-import { from, of, Observable, zip } from 'rxjs';
+import { switchMap, catchError, map} from 'rxjs/operators';
+import {  of } from 'rxjs';
 
 import * as CategoriesActions from './categories.actions';
 import * as PostsActions from '../../posts/store/posts.actions';
 import { Category } from '../category.model';
 import { HttpClient } from '@angular/common/http';
-import { off } from 'process';
 
 const MY_URL = 'http://localhost:3000/api/';
 
@@ -79,7 +78,7 @@ export class CategoriesEffects {
       switchMap(categoryId => {
         return this.http.delete(MY_URL + 'categories' + "/" + categoryId['payload'])
           .pipe(
-            map(newCategoryData => {
+            map(_ => {
               return (new CategoriesActions.DeleteCategorySuccess());
             }),
             catchError(error => {
@@ -117,7 +116,6 @@ export class CategoriesEffects {
     .pipe(
       ofType(CategoriesActions.SELECT_TAG),
       switchMap((tagData: {postsPerPage: number, currentPage: number, currentTag: string }) => {
-        console.log('effect data', tagData);
         return of(new PostsActions.GetPosts({
           postsPerPage: tagData['payload']['postsPerPage'],
           currentPage: tagData['payload']['currentPage'],

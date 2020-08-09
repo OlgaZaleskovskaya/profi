@@ -2,30 +2,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../material/angular-material.module';
-import { EmailComponent } from './email/email.component';
-import { PasswordComponent } from './password/password.component';
+
+
+import { LoginComponent } from './login/login.component';
+import { AuthRoutingModule } from './auth-routing.module';
+import { PasswordConfirmValidatorDirective } from './signup/passwordConfirmValidator/passwordConfirmValidator.directive';
+import { SignupComponent } from './signup/signup.component';
+import { AuthComponent } from './auth.component';
 import { ErrorComponent } from './error/error.component';
-import { CreateAccountComponent } from './createAccount/createAccount.component';
-import { CreateUserComponent } from './createUser/createUser.component';
-import { PasswordConfirmValidatoreDirective } from './passwordConfirmValidator.directive';
 
 
 
 @NgModule({
   declarations: [
-    EmailComponent,
-    PasswordComponent,
-    ErrorComponent,
-    CreateAccountComponent,
-    CreateUserComponent,
-    PasswordConfirmValidatoreDirective
+    LoginComponent,
+    PasswordConfirmValidatorDirective,
+    SignupComponent,
+    AuthComponent, ErrorComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     AngularMaterialModule,
+    AuthRoutingModule
   ],
- // entryComponents: [EmailComponent]
+  // entryComponents: [EmailComponent]
 })
 export class AuthModule { }

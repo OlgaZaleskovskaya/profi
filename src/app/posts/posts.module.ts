@@ -7,6 +7,8 @@ import { CommentsComponent } from './comments/comments.component';
 import { CreateCommentComponent } from './createComment/create-comment.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImagesComponent } from './images/images.component';
+import { PostComponent } from './post/post.component';
+
 
 
 
@@ -18,7 +20,9 @@ import { ImagesComponent } from './images/images.component';
    PostsComponent,
    CommentsComponent,
    CreateCommentComponent,
-   ImagesComponent
+   ImagesComponent,
+   PostComponent
+
 
   ],
   imports: [
@@ -28,6 +32,6 @@ import { ImagesComponent } from './images/images.component';
     AngularMaterialModule,
     BrowserAnimationsModule
   ],
- // entryComponents: [EmailComponent]
+
 })
 export class PostsModule { }

@@ -1,17 +1,24 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <mat-toolbar color="primary">
-  <span> <a routerLink="">PROFI</a></span>
+  <span> <a routerLink="/posts">PROFI</a></span>
   <span class="spacer"></span>
-  <span *ngIf="userName != ''" >Hello, {{userName}}</span>
-  <button mat-button (click)="openLoginDialog()">Enter</button>
+  <span *ngIf="userName != ''">Hello, {{userRole | uppercase}} {{userName}}, </span>
+
+  <button mat-button routerLink="/auth/login" *ngIf="!isAuthenticated">Log In</button>
+  <button mat-button routerLink="/auth/signup" *ngIf="!isAuthenticated">Sign Up</button>
+  <button mat-button (click)="onLogout()" *ngIf="isAuthenticated">Log Out</button>
+  <!--   <button mat-button  (click)="openLoginDialog()">Enter</button> -->
   <button mat-button (click)="onCreateCategory()">Create Category</button>
   <button mat-button (click)="onUpdateCategory()">Update Category</button>
-  <span><a routerLink='/personal' routerLinkActive="active">Personal Page</a></span>
+  <span><a routerLink='/personal' routerLinkActive="active" *ngIf="isAuthenticated && userRole == 'master'">Personal Page</a></span>
 
 </mat-toolbar>
- <div class="container">
-  <div class="leftColumn"><app-categories></app-categories></div>
-<div class="centerColumn"><router-outlet></router-outlet></div>
+<div class="container">
+  <div class="leftColumn">
+    <app-categories></app-categories>
+  </div>
+  <div class="centerColumn">
+    <router-outlet></router-outlet>
+  </div>
   <div class="rightColumn">dd</div>
 </div>
-

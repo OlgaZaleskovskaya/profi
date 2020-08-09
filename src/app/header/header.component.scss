@@ -13,13 +13,12 @@ span:not(first-child) {
 
 .container {
   display: flex;
- flex-direction: row;
- flex-wrap: nowrap; ;
-  height:200px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: auto;
   div.leftColumn {
     background-color: yellow;
     flex-basis: 250px;
-
   }
   div.rightColumn {
     background-color: rgb(255, 166, 0);
@@ -28,12 +27,16 @@ span:not(first-child) {
   }
 
   div.centerColumn {
-    background-color: rgba(0, 255, 30, 0.061);
+    background-color: rgba(122, 211, 132, 0.061);
     flex-basis: 600px;
-
   }
 }
 
-.active{
+.active {
   color: palevioletred;
+}
+
+mat-spinner{
+  margin: 10px auto;
+
 }

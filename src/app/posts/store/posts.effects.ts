@@ -22,7 +22,6 @@ export class PostsEffects {
     .pipe(
       ofType(PostsActions.GET_POSTS),
       switchMap(res => {
-
         const queryParams = `?pagesize=
         ${res['payload']['postsPerPage']}
         &page=${res['payload']['currentPage']}
@@ -30,7 +29,6 @@ export class PostsEffects {
         return this.http.get<{ message: string, posts: any[], maxPosts: number }>(MY_URL + 'posts' + queryParams)
           .pipe(
             map(res => {
-              console.log('post', res);
               const transformedPosts = res.posts.map(post => {
                 const transformedComments = post.comments.map(comment => { return { authorId: comment.authorId, date: comment.date, content: comment.content, id: comment._id } });
                 const smth = new Post(post._id,
@@ -51,18 +49,6 @@ export class PostsEffects {
       }
       ))
     ;
-
-  private getImageSize(path: string[]): { path: string, width: number, height: number, orient: string }[] {
-    const newData = path.map(imgPath => {
-      let img = new Image();
-      img.src = imgPath;
-      console.log('width', img.width)
-      setTimeout(function () { console.log('width set timeout', img.width) }, 3000);
-      return { path: imgPath, width: img.width, height: img.height, orient: ((img.width / img.height) > 1 ? "h" : "v") }
-    });
-    console.log('newData effects', newData);
-    return newData;
-  }
 
 
   @Effect()
@@ -108,7 +94,6 @@ export class PostsEffects {
             })
           )
       }
-
       )
     );
 

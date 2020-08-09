@@ -1,6 +1,8 @@
+
 <div #myDiv class="imageContainer" [ngClass]="mainClass" [style.width]="getTotalWidth()"
   [style.height]="getTotalHeight()" (click)="toImages()">
   <div *ngFor="let item of images; let i = index" [ngClass]="'item'+ i">
     <img [src]="item.path">
   </div>
+
 

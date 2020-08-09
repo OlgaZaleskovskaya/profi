@@ -12,11 +12,14 @@
         <app-images [imagesData]="post.imageData"></app-images>
     </div>
     <mat-card-content>
-      {{post.content}}
+      <p>
+         {{post.content}}
+      </p>
+
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-actions>
-      <button mat-stroked-button (click)="onAddComment(post)">Add
+      <button mat-stroked-button [disabled]="!isAuthenticated" (click)="onAddComment(post)">Add
         comment</button>
       <button [disabled]="post.comments.length == 0" mat-button (click)="onGetComments()">Comments:
         {{post.comments.length}}

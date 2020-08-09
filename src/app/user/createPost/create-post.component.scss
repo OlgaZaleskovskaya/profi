@@ -28,18 +28,22 @@ span.tagList:last-child::after {
   content: "";
 }
 
-div.imagesTest{
-  width: 150px;
-  height: 100px;
-  img{
-    width: 150px;
-  height: 150px;
-  object-fit: cover;
-
-
+div.imagesPreview {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1rem auto;
+  justify-content: flex-start;
+  div {
+    flex-basis: 20%;
+   border:1px solid white;
+    box-sizing: border-box;
+    height: 100px;
+    overflow: hidden;
+  }
+  img {
+    width: 100%;
+    object-fit: contain;
   }
 }
-
-
-
-

@@ -1,1 +1,7 @@
-<p></p>
+<div class="alert-box">
+  <p><span *ngIf="data.type == 'error'">An error occured:</span><span *ngIf="data.name">{{data.name}},</span> {{data.message}}</p>
+  <p>
+    <button *ngIf="data.type == 'error'" color="primary" mat-button (click)="onRepeat()" type="button">Once more</button>
+    <button color="accent" mat-button (click)="onClose()" type="button">Close</button>
+  </p>
+</div>

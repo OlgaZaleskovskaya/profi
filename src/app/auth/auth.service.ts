@@ -1,32 +1,51 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
-import { User } from './auth.model';
+import { User, NewUser } from './auth.model';
+import { Subscription } from 'rxjs';
 
 
 @Injectable({ providedIn: 'root' })
-export class AuthService implements OnInit {
+export class AuthService {
   email: string;
   role: string;
   password: string;
-  name: string;
-  newUser: User = new User('', '', '', '');
+  userName: string;
+  authSubscription: Subscription;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  onLoginError: string;
+  constructor(private store: Store<fromApp.AppState>,
+    private componentFactoryResolver: ComponentFactoryResolver) {
 
-  constructor(private store: Store<fromApp.AppState>) { }
+    this.authSubscription = this.store.select('auth').subscribe(res => {
+      console.log("service", res.user);
+      if (res.user != null) {
 
-  ngOnInit(): void {
+        this.isAuthenticated = res.isAuthenticated;
+        this.userName = res.user.name;
+        this.role = res.user.role;
+      }
+      this.isLoading = res.isLoading;
+      if (res.authError) {
+        this.showErrorAlert(res.authError)
+      }
+    })
 
   }
 
-  onLogin() {
-    const user = { email: this.newUser.email, password: this.newUser.password }
-    this.store.dispatch(new AuthActions.LoginStart(user));
+  onLogin(email: string, password: string) {
+    this.store.dispatch(new AuthActions.LoginStart({ email: email, password: password }));
   }
 
-  onSignUp() {
-    console.log('new user',  this.newUser )
-    this.store.dispatch(new AuthActions.SignUpStart({user: this.newUser}));
+  onSignup(name: string, email: string, password: string, role: string) {
+    const user = new NewUser(name, email, password, role);
+    this.store.dispatch(new AuthActions.SignUpStart({ user: user }));
   }
+
+  showErrorAlert(error: string) { }
+
+
 
 }

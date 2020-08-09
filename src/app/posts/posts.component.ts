@@ -80,9 +80,9 @@ export class PostsComponent implements OnInit, OnDestroy {
       .subscribe(authState => {
         this.isAuthenticated = authState.isAuthenticated;
         if (this.isAuthenticated) {
-          this.userName = authState.user.name;
-          this.userRole = authState.user.role;
-          this.userId = authState.user.id;
+//this.userName = authState.user.name;
+       //   this.userRole = authState.user.role;
+      //    this.userId = authState.user.id;
         }
       }
       );

@@ -54,27 +54,29 @@ const storage = multer.diskStorage({
 }); */
 
 router.post("", multer({ storage: storage }).array("images[]", 5), (req, res, next) => {
-
-
   let imagesData = [];
+  let width =720;
+  let height = 960;
   const url = req.protocol + '://' + req.get("host");
   req.files.forEach(item => {
-    console.log('filename', item.filename);
-    console.log('filename', item);
+    let path = `${item.destination}/${item.filename}`;
+    let dimensions = sizeOf(path);
+    if (dimensions['orientation'] == 1) {
+      width = 960;
+      height = 720;
+    }
     sharp(item.path)
       .rotate()
-      .resize(720, 960)
+      .resize(width, height)
       .jpeg({ quality: 80 })
 
       .toFile("backend/images/small/small_" + item.filename, function (err) {
         console.log('err', err);
       });
 
-    let path = `${item.destination}/${item.filename}`;
-    let dimensions = sizeOf(path);
-    console.log('dimentions', dimensions);
+
     let data;
-    data = { path: (url + "/images/small/small_" + item.filename), width: dimensions.width, height: dimensions.height };
+    data = { path: (url + "/images/small/small_" + item.filename), width: width, height: height };
     imagesData.push(data);
   }
   );
@@ -108,6 +110,7 @@ router.get("", (req, res, next) => {
   const currentTag = req.query.tag;
   let postQuery = Post.find();
   let filterQuery = Post.find();
+  //console.log("posts", postQuery);
 
   if (currentTag.length > 0) {
     postQuery = Post.find({
@@ -129,6 +132,7 @@ router.get("", (req, res, next) => {
   postQuery
     .then(documents => {
       fetchedPosts = documents;
+      // console.log('document', fetchedPosts[0].imageData);
       return filterQuery.count();
     })
     .then(count => {

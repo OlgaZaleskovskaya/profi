@@ -1,0 +1,15 @@
+<div class="container">
+  <span role="button" class="material-icons" (click)="onClose()" matTooltip="Close">
+    clear
+  </span>
+  <div class="wrapper">
+    <div class="image" [style.background-image]="'url(' + currentImg + ')'">
+      <!--   <img [src]="currentImg" alt="my image"  [@changePicture]="animate ? 'animate' : 'noAnimate'"> -->
+    </div> <span class="material-icons right" (click)="onNext(-1)">
+      keyboard_arrow_right
+    </span>
+    <span class="material-icons left" (click)="onNext(1)">
+      keyboard_arrow_left
+    </span>
+  </div>
+</div>

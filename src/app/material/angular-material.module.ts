@@ -15,7 +15,9 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule, MatSelect } from '@angular/material/select';
+import { MatSelectModule} from '@angular/material/select';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { MatSelectModule, MatSelect } from '@angular/material/select';
     MatDividerModule,
     MatIconModule,
     MatSelectModule,
+    MatDialogModule,
+    MatTabsModule
 
   ]
 })

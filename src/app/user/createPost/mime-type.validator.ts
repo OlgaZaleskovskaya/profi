@@ -1,9 +1,12 @@
 import { AbstractControl } from '@angular/forms';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
 
 export const mimeType = (control: AbstractControl):
   Promise<{ [key: string]: any }> | Observable<{ [key: string]: any }> => {
-  const file = control.value as File;
+
+  const file = control.value as File[];
+
+
   const fileReader = new FileReader();
   const frObs = Observable.create((observer: Observer<{ [key: string]: any }>) => {
     fileReader.addEventListener("loadend", () => {
@@ -35,7 +38,18 @@ export const mimeType = (control: AbstractControl):
       }
       observer.complete();
     });
-    fileReader.readAsArrayBuffer(file);
+    if (file) {
+      console.log('myFile', file[0] );
+      fileReader.readAsArrayBuffer(file[0]);
+    }
+
+
   })
+
+
+
+
   return frObs;
+
+
 }

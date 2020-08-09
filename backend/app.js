@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const tagRoutes = require("./routes/tags");
 const postRoutes = require("./routes/posts");
+const userRoutes = require("./routes/user");
 const commentRoutes = require("./routes/postcomments");
 const path = require("path");
 
@@ -14,7 +15,7 @@ mongoose.connect("mongodb+srv://michael:vho5Z171bvvaADxv@cluster0-5szqr.mongodb.
   .catch((res) => {
     console.log("Connected to database failed", res)
   })
-//vho5Z171bvvaADxv
+// vho5Z171bvvaADxv
 
 
 
@@ -37,5 +38,6 @@ app.use((req, res, next) => {
 app.use("/api/tags", tagRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/postcomments", commentRoutes);
+app.use("/api/user", userRoutes);
 module.exports = app;
 

@@ -1,5 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 
@@ -8,13 +9,22 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./error.component.scss']
 
 })
-export class ErrorComponent implements OnInit {
-  isLoading = false;
-  email: string
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
-  ngOnInit(): void {
-    this.email = '';
+export class ErrorComponent {
+  type: boolean;
+  name: string;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string, type: string, name: string },
+    public dialogRef: MatDialogRef<ErrorComponent>,
+    private router: Router
+  ) { };
+
+  onClose() {
+    this.dialogRef.close();
+    this.router.navigate(['']);
   }
 
+  onRepeat() {
 
+    this.dialogRef.close();
+    this.router.navigate(['auth/login']);
+  }
 }

@@ -1,0 +1,22 @@
+:host{
+  background: yellowgreen;
+  height: auto;
+}
+
+div.alert-box {
+  border-radius: 5px;
+  width: 50vw;
+  padding: 16px;
+  height: auto;
+  background-color: rgb(233, 239, 240);
+  box-shadow: 0 2p 8px rgba(0, 0, 0, 0.26);
+  margin: auto;
+  p {
+    font-style: italic;
+    color: red;
+    text-align: center;
+  }
+  button {
+    margin: 2rem;
+  }
+}

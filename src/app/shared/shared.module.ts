@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from '../material/angular-material.module';
 import { CapitalFirstLetterPipe } from './capitalFirstLetter.pipe';
+import { PlaceholderDirective } from './placeholder.directive';
 
 
 @NgModule({
@@ -10,6 +11,7 @@ import { CapitalFirstLetterPipe } from './capitalFirstLetter.pipe';
   ],
   declarations: [
     CapitalFirstLetterPipe,
+    PlaceholderDirective
   //  HighlightDirective,
    // ExponentialStrengthPipe
     //AngularMaterialModule,
@@ -19,6 +21,7 @@ import { CapitalFirstLetterPipe } from './capitalFirstLetter.pipe';
     //CapitalFirstLetterPipe,
     AngularMaterialModule,
     CapitalFirstLetterPipe,
+    PlaceholderDirective
    // HighlightDirective,
    // ExponentialStrengthPipe
   ]

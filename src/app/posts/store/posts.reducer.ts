@@ -51,7 +51,7 @@ export function postsReducer(state = initialState, action: PostsActions.postsAct
       };
     case PostsActions.ADD_POST_SUCCESS:
       alert("Post is added");
-      console.log('action.payload', action.payload);
+
       return {
         ...state,
        // posts: [...state.posts, action.payload]

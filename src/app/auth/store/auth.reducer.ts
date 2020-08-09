@@ -1,18 +1,20 @@
-import { User } from '../auth.model';
+import {FetchedUser } from '../auth.model';
 import * as AuthActions from './auth.actions';
 
 export interface State {
-  user: User;
+  user: FetchedUser;
   isAuthenticated: boolean;
   authError: string,
-  isLoading: boolean
+  isLoading: boolean,
+  authMessage: string
 }
 
 const initialState: State = {
   user: null,
   isAuthenticated: false,
   authError: null,
-  isLoading: false
+  isLoading: false,
+  authMessage: null
 }
 
 
@@ -22,6 +24,7 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
     case AuthActions.LOGIN:
       return {
         ...state,
+        authMessage: action.payload.message,
         isAuthenticated: true,
         user: action.payload.user,
         authError: null,
@@ -32,13 +35,21 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
       return {
         ...state,
         isAuthenticated: false,
-        user: null
+        user: null,
+        authMessage: null,
+        authError: null
       };
 
     case AuthActions.SIGN_UP_START:
       return {
         ...state,
         isLoading: true
+      };
+    case AuthActions.SIGN_UP:
+      return {
+        ...state,
+        isLoading: false,
+        authMessage: `${action.payload.user}, ${action.payload.message}`
       };
 
     case AuthActions.LOGIN_START:
@@ -58,6 +69,16 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
         user: null,
         isLoading: false
       };
+
+    case AuthActions.REMOVE_MESSAGE:
+
+        return {
+          ...state,
+          authError: null,
+          authMessage: null
+        };
+
+
     default:
       return {
         ...
