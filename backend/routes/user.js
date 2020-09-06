@@ -17,15 +17,12 @@ router.post("/signup", (req, res, next) => {
       });
       user.save()
         .then(result => {
-         console.log('result',result);
           res.status(201).json({
             message: 'USER_IS_CREATED',
             user: result.name
           });
         })
         .catch(err => {
-          // console.log('error', err._message);
-          // console.log('error', err.errors.message);
           res.status(500).json({
             error: err
           })

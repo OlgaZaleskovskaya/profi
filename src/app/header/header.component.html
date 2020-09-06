@@ -2,14 +2,18 @@
 <mat-toolbar color="primary">
   <span> <a routerLink="/posts">PROFI</a></span>
   <span class="spacer"></span>
-  <span *ngIf="userName != ''">Hello, {{userRole | uppercase}} {{userName}}, </span>
+  <span *ngIf="userName != ''">Hello, {{userName}}, </span>
 
   <button mat-button routerLink="/auth/login" *ngIf="!isAuthenticated">Log In</button>
   <button mat-button routerLink="/auth/signup" *ngIf="!isAuthenticated">Sign Up</button>
   <button mat-button (click)="onLogout()" *ngIf="isAuthenticated">Log Out</button>
-  <button mat-button (click)="onCreateCategory()">Create Category</button>
-  <button mat-button (click)="onUpdateCategory()">Update Category</button>
-  <span><a routerLink='/personal' routerLinkActive="active" *ngIf="isAuthenticated && userRole == 'master'">Personal Page</a></span>
+  <!-- to be moved to admin panel
+    
+    <button mat-button (click)="onCreateCategory()">Create Category</button>
+  <button mat-button (click)="onUpdateCategory()">Update Category</button> -->
+
+  
+  <span><a routerLink='/personal' routerLinkActive="active" *ngIf="isAuthenticated && userRole == 'Master'">Personal Page</a></span>
 
 </mat-toolbar>
 <div class="container">
@@ -19,5 +23,5 @@
   <div class="centerColumn">
     <router-outlet></router-outlet>
   </div>
-  <div class="rightColumn">dd</div>
+  <div class="rightColumn">Some content is supposed to be here</div>
 </div>

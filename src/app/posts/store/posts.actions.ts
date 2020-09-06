@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import {   Comment, Post, PostData,  CreatePostData } from '../post.model';
+import {   Comment, Post } from '../post.model';
 
 export const GET_POSTS = '[Post] Get Posts';
 export const SET_POSTS = '[Post] Set Posts';
@@ -32,7 +32,6 @@ export class AddCommentsStart implements Action {
   readonly type = ADD_COMMENT_START;
   constructor(public payload: string) { };
 }
-
 
 
 export class GetCommentsSuccess implements Action {

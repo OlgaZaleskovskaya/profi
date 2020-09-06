@@ -1,6 +1,6 @@
 
 import * as PostsActions from './posts.actions';
-import { PostData, Comment, Post } from '../post.model';
+import { Comment, Post } from '../post.model';
 
 export interface State {
   posts: Post[];

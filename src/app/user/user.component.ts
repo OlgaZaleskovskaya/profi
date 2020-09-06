@@ -5,8 +5,7 @@ import * as fromApp from '../store/app.reducer';
 import { MatDialog } from '@angular/material/dialog'
 import { Category } from '../categories/category.model';
 import * as PostsActions from '../posts/store/posts.actions';
-import { FormGroup } from '@angular/forms';
-import { Post, CreatePostData } from '../posts/post.model';
+
 import { Subscription } from 'rxjs';
 import { FetchedUser } from '../auth/auth.model';
 
@@ -35,20 +34,20 @@ export class UserComponent implements OnInit, OnDestroy {
     this.isCreatePost = true;
   }
 
-  onPostCreated(data: CreatePostData) {
+  onPostCreated(data: any) {
     this.isCreatePost = false;
     if (data != null) {
       const postData = new FormData();
       postData.append('tags', JSON.stringify(data.tags));
       postData.append('title', data.title);
       postData.append('content', data.content);
-      //  postData.append('image', data.image, data.title);
-      postData.append('authorId', 'user');
+      postData.append('authorId', this.user.id);
+      postData.append('authorName', this.user.name);
       for (let i = 0; i < data.images.length; i++) {
         postData.append('images[]', data.images[i], data.title + i);
       }
 
-      this.store.dispatch(new PostsActions.AddPostStart(postData))
+     this.store.dispatch(new PostsActions.AddPostStart(postData))
     }
   }
 

@@ -2,7 +2,7 @@
 <ng-container *ngIf="!isLoading && postList.length>0">
 
   <mat-card *ngFor="let post of postList">
-    <p class="meta"><span>{{post.authorId}}&nbsp;</span><span class="sp"></span><span>{{post.date | date}}</span></p>
+    <p class="meta"><span>{{post.authorName}}&nbsp;</span><span class="sp"></span><span>{{post.date | date}}</span></p>
     <p class="meta"><span>HashTags:&nbsp;</span><span class="sp"></span><span [class.currentTag]="tag == currentTag"
         *ngFor="let tag of post.tags">#{{tag | lowercase}}</span></p>
     <mat-card-header>

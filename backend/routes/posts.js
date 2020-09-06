@@ -30,29 +30,6 @@ const storage = multer.diskStorage({
 });
 
 
-/* router.post("", multer({ storage: storage }).single("image"), (req, res, next) => {
-  const url = req.protocol + '://' + req.get("host");
-
-  const post = new Post({
-    title: req.body.title,
-    content: req.body.content,
-    authorId: req.body.authorId,
-    imagePath: url + "/images/" + req.file.filename,
-    tags: JSON.parse(req.body.tags),
-    date: Date.now(),
-    comments: []
-  });
-  post.save().then(createdPost => {
-    res.status(201).json({
-      message: "Post added",
-      post: {
-        ...createdPost,
-        id: createdPost._id,
-      }
-    })
-  });
-}); */
-
 router.post("", multer({ storage: storage }).array("images[]", 5), (req, res, next) => {
   let imagesData = [];
   let width =720;
@@ -69,11 +46,9 @@ router.post("", multer({ storage: storage }).array("images[]", 5), (req, res, ne
       .rotate()
       .resize(width, height)
       .jpeg({ quality: 80 })
-
       .toFile("backend/images/small/small_" + item.filename, function (err) {
         console.log('err', err);
       });
-
 
     let data;
     data = { path: (url + "/images/small/small_" + item.filename), width: width, height: height };
@@ -85,6 +60,7 @@ router.post("", multer({ storage: storage }).array("images[]", 5), (req, res, ne
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
+    authorName: req.body.authorName,
     authorId: req.body.authorId,
     imageData: imagesData,
     tags: JSON.parse(req.body.tags),
@@ -110,8 +86,6 @@ router.get("", (req, res, next) => {
   const currentTag = req.query.tag;
   let postQuery = Post.find();
   let filterQuery = Post.find();
-  //console.log("posts", postQuery);
-
   if (currentTag.length > 0) {
     postQuery = Post.find({
       tags: `${currentTag}`
@@ -127,8 +101,6 @@ router.get("", (req, res, next) => {
       .skip(pageSize * (currentPage - 1))
       .limit(pageSize);
   };
-  // const testQuery = Post.find({ tags: 'family' });
-
   postQuery
     .then(documents => {
       fetchedPosts = documents;
@@ -136,8 +108,6 @@ router.get("", (req, res, next) => {
       return filterQuery.count();
     })
     .then(count => {
-
-
       res.status(201).json({
         message: "Posts fetched",
         posts: fetchedPosts,

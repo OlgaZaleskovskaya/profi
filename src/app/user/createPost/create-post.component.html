@@ -1,8 +1,8 @@
-<ng-container *ngIf="currentCategory">
+<!-- <ng-container *ngIf="currentCategory">
   <div *ngFor="let cat of selectedCategories">
   <p>You selection: {{cat.categoryName | capitalLetter}} + <span class="tagList" *ngFor="let item of cat.tags">{{item}}</span></p>
-</div>
-</ng-container>
+</div> 
+</ng-container>-->
 <mat-card>
   <form [formGroup]="form" #myForm="ngForm" (submit)="onSavePost(myForm)">
     <mat-form-field>
@@ -14,12 +14,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <!--   <mat-error *ngIf="category.invalid">Please select a category</mat-error> -->
-
-
-
-
-
+  
     <mat-form-field *ngIf="currentCategory">
       <mat-label>Select subcategory</mat-label>
       <mat-select formControlName="subcategory" (selectionChange)="onSubcategorySelect($event)" multiple>
@@ -45,17 +40,16 @@
     <div *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid" class="imagesPreview">
        <div *ngFor="let img of imagePreviews" >
 
-      <img [src]=img alt="fdfdfd">
+      <img [src]=img alt="myImage">
     </div>
     </div>
     <mat-form-field>
       <textarea matInput rows="4" formControlName="content" placeholder="Post Content"></textarea>
       <mat-error *ngIf="form.get('content').invalid">Please enter a post.</mat-error>
     </mat-form-field>
- <!--    <button mat-raised-button color="accent" [disabled]="form.invalid" type="submit">Save Post</button> -->
+ 
     <button mat-raised-button color="accent"  type="submit">Save Post</button>
     <button mat-raised-button color="main" type="button" (click)="onReset()">Reset</button>
     <button mat-raised-button color="primary" type="button" (click)="onCancelCreatePost()">Cancel</button>
   </form>
-  <p>formStatus: {{form.status}}</p>
 </mat-card>

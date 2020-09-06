@@ -15,6 +15,9 @@ mongoose.connect("mongodb+srv://michael:vho5Z171bvvaADxv@cluster0-5szqr.mongodb.
   .catch((res) => {
     console.log("Connected to database failed", res)
   })
+
+
+  //mongo "mongodb+srv://cluster0.5szqr.mongodb.net/profi" --username michael
 // vho5Z171bvvaADxv
 
 

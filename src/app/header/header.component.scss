@@ -17,12 +17,11 @@ span:not(first-child) {
   flex-wrap: nowrap;
   height: auto;
   div.leftColumn {
-    background-color: yellow;
+
     flex-basis: 250px;
   }
   div.rightColumn {
-    background-color: rgb(255, 166, 0);
-
+   
     flex-shrink: 2;
   }
 

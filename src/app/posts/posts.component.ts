@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription} from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
@@ -8,7 +8,7 @@ import * as PostsActions from './store/posts.actions';
 import { Post } from './post.model';
 import { Category } from '../categories/category.model';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { ignoreElements } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-posts',
@@ -70,6 +70,7 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new PostsActions.GetPosts({ postsPerPage: this.postsPerPage, currentPage: this.currentPage, currentTag: this.currentTag }));
     this.postsSubscription = this.store.select('posts').subscribe(postState => {
       this.postList = [...postState.posts];
+      console.log('post list',  this.postList);
 
       this.totalPosts = postState.maxPosts;
       this.isLoading = false;
@@ -80,30 +81,11 @@ export class PostsComponent implements OnInit, OnDestroy {
       .subscribe(authState => {
         this.isAuthenticated = authState.isAuthenticated;
         if (this.isAuthenticated) {
-//this.userName = authState.user.name;
-       //   this.userRole = authState.user.role;
-      //    this.userId = authState.user.id;
         }
       }
       );
   };
 
-  /*  private getImageSize(post: Post): { path: string, width: number, height: number, orient: string }[] {
-     const paths = [...post.imagePath];
-     const newData = paths.map(imgData => {
-       let img = new Image();
-       img.src = imgData.path;
-     //  console.log('get src', img.src);
- //console.log('get size width', img.width);\\ setTimeout(function () { console.log('get size width after interval', img.width); }, 3000);
-
-
-
-       return { path: imgData.path, width: img.width, height: img.height, orient: ((img.width /img.height) > 1 ? "h" : "v") }
-     });
-   //  console.log('newData', newData);
-
-     return newData;
-   } */
 
   onGetComments() {
     this.isComments = !this.isComments;

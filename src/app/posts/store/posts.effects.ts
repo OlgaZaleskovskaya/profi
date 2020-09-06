@@ -35,6 +35,7 @@ export class PostsEffects {
                   post.title,
                   post.content,
                   post.date, post.authorId,
+                  post.authorName,
                   post.tags, post.imageData,
                   transformedComments);
                 return smth;

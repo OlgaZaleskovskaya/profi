@@ -1,8 +1,8 @@
-import { Injectable, OnInit, ComponentFactoryResolver } from '@angular/core';
+import { Injectable, ComponentFactoryResolver } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
-import { User, NewUser } from './auth.model';
+import {  NewUser } from './auth.model';
 import { Subscription } from 'rxjs';
 
 
@@ -20,9 +20,7 @@ export class AuthService {
     private componentFactoryResolver: ComponentFactoryResolver) {
 
     this.authSubscription = this.store.select('auth').subscribe(res => {
-      console.log("service", res.user);
       if (res.user != null) {
-
         this.isAuthenticated = res.isAuthenticated;
         this.userName = res.user.name;
         this.role = res.user.role;
@@ -44,7 +42,9 @@ export class AuthService {
     this.store.dispatch(new AuthActions.SignUpStart({ user: user }));
   }
 
-  showErrorAlert(error: string) { }
+  showErrorAlert(error: string) { 
+    //ToDo
+  }
 
 
 

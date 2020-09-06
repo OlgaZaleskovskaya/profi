@@ -33,23 +33,6 @@ export interface SignupResponseData {
   user: string
 }
 
-//private _token: string;
-
-/*  public get password(): string {
-   return this._password;
- }
-
- public set password(password: string) {
-   this._password = password;
- }
-
- public get token(): string {
-   return this._token;
- }
-
- public set token(token: string) {
-   this._token = token;
- } */
 
 export class User {
   id: string;
@@ -59,12 +42,15 @@ export class User {
 
 export class FetchedUser extends NewUser {
   constructor(
-    private readonly id: string,
+    private readonly _id: string,
     name: string,
     email: string,
     role: string, private readonly token: string,
     public readonly date?: string,) {
     super(name, email, '', role);
+  }
+  get id (){
+    return this._id;
   }
 
 }

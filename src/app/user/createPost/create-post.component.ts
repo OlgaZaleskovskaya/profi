@@ -8,6 +8,7 @@ import { Category } from 'src/app/categories/category.model';
 import { MatSelectChange } from '@angular/material/select';
 import { mimeType } from './mime-type.validator';
 import { maxImgQuantityValidator } from './maxImgQuantity.validator';
+import { ICreatePostData } from 'src/app/posts/post.model';
 
 interface SelectedCategory {
   categoryName: string, tags: string[];
@@ -20,14 +21,16 @@ interface SelectedCategory {
 })
 
 export class CreatePostComponent implements OnInit, OnDestroy {
-  @Output() onPostCreated = new EventEmitter<{
-    title: string,
-    content: string,
-    tags: string[],
-    image: File
-  }>();
+  /*  @Output() onPostCreated = new EventEmitter<{
+     title: string,
+     content: string,
+     tags: string[],
+     image: File
+   }>(); */
+  @Output() onPostCreated = new EventEmitter<ICreatePostData>();
+
+
   @Input() categories: Category[];
-  // @ViewChild('myForm') myForm;
   errorState = false;
   currentCategory: Category;
   currentSubcategories: { _id: string, id: string, name: string }[];
@@ -73,7 +76,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
         //  asyncValidators: [mimeType]
       }),
       images: new FormControl(null, {
-     /*    validators: [maxImgQuantityValidator(this.maxImageQuantity)], */
+        /*    validators: [maxImgQuantityValidator(this.maxImageQuantity)], */
         //  asyncValidators: [mimeType]
 
       })
@@ -141,11 +144,10 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     this.selectedCategories.forEach(item => {
       this.selectedTags = [...this.selectedTags, ...item.tags]
     });
-    const post = {
+    const post: ICreatePostData = {
       title: this.form.value.title,
       content: this.form.value.content,
       tags: [...this.selectedTags],
-      image: this.form.value.image,
       images: this.form.value.images,
     };
     this.onPostCreated.emit(post);
