@@ -1,8 +1,9 @@
 
 
 export enum Role {
-  Master = "master",
-  Customer = "customer"
+  Master = "Master",
+  Customer = "Customer",
+  Admin = "Admin"
 
 }
 // for form to send to server

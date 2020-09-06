@@ -6,15 +6,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
 import * as CategoriesActions from '../categories/store/categories.actions';
-
-
-//import { EmailComponent } from '../auth/email/email.component';
-// { PasswordComponent } from '../auth/password/password.component';
-import { ErrorComponent } from '../auth/error/error.component';
-//import { CreateAccountComponent } from '../auth/createAccount/createAccount.component';
 import { AuthService } from '../auth/auth.service';
-// { CreateUserComponent } from '../auth/createUser/createUser.component';
-import { User, Role } from '../auth/auth.model';
 import { CreateCategoryComponent } from '../categories/createCategory/create-category.component';
 import { Category } from '../categories/category.model';
 
@@ -39,7 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-
     this.authSubscription = this.store.select('auth').subscribe(state => {
       this.isAuthenticated = state.isAuthenticated;
       if (state.user != null) {
@@ -54,43 +45,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(state => this.currentCategory = state.currentCategory)
   };
 
-  openLoginDialog() {
-
-    /*  let dialogRef = this.dialog.open(EmailComponent);
-     dialogRef.afterClosed().subscribe((result: string | { email: string }) => {
-       if (!result) { return };
-       if (typeof result == 'string') {
-         this.authService.newUser.email = result;
-         this.onCreateAccount();
-       } else {
-         this.authService.newUser.email = result.email;
-         this.onEnterPassword();
-       }
-     }); */
-  }
-
-  onEnterPassword() {
-    /*   let dialogRef = this.dialog.open(PasswordComponent, { data: { email: this.email } });
-      dialogRef.afterClosed().subscribe(res => {
-        if (typeof res == "object") {
-          this.authService.newUser.password = res.password;
-          this.authService.onLogin();
-        } else {
-          switch (res) {
-            case "forgetPassword":
-
-              break;
-            case "cancel":
-
-              break;
-            default:
-
-              break;
-          }
-        }
-      }); */
-
-  }
 
   onLoginError(error: string) {
   /*   let dialogRef = this.dialog.open(ErrorComponent, {
@@ -98,30 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }); */
   }
 
-  onCreateAccount() {
-    /*   let dialogRef = this.dialog.open(CreateAccountComponent);
-      dialogRef.afterClosed().subscribe((result: null | { role: string }) => {
-        if (result) {
-          if(result.role == "master"){
-             this.authService.newUser.role = Role.Master;
-          } else{
-            this.authService.newUser.role = Role.Customer;
-          }
-
-          this.onCreateUser();
-        }
-      }) */
-  }
-
-  private onCreateUser() {
-    /*   let dialogRef = this.dialog.open(CreateUserComponent);
-      dialogRef.afterClosed().subscribe((result: null | { user: User }) => {
-        if (result != null) {
-          this.authService.newUser = result.user;
-          this.authService.onSignUp();
-        }
-      }) */
-  }
+ 
 
   onCreateCategory() {
     let dialogRef = this.dialog.open(CreateCategoryComponent);

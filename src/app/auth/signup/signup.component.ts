@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { Role } from '../auth.model';
 
 @Component({
   templateUrl: './signup.component.html',
@@ -11,12 +12,14 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   isLoading: boolean;
   roles: string[];
+role: Role;
   constructor(private authService: AuthService, private router: Router) { }
 
 
   selectedRole: string;
   ngOnInit(): void {
-    this.roles = ['master', 'customer'];
+
+    this.roles = [Role.Master, Role.Admin, Role.Customer];
     this.isLoading = false;
 
   }

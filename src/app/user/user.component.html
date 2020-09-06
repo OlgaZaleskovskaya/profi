@@ -1,9 +1,7 @@
-<button mat-button (click)="onCreatePost()">Add post</button>
-<app-create-post-component *ngIf="isCreatePost" [categories]="categories" (onPostCreated)="onPostCreated($event)">
-</app-create-post-component>
 
 <mat-tab-group>
   <mat-tab label="My Profile"> Profile</mat-tab>
   <mat-tab label="My Posts"> Posts </mat-tab>
-  <mat-tab label="Third"> Content 3 </mat-tab>
+  <mat-tab label="New Post"> <app-create-post-component [categories]="categories" (onPostCreated)="onPostCreated($event)">
+</app-create-post-component></mat-tab>
 </mat-tab-group>

@@ -22,8 +22,6 @@ import { PostComponent } from './post/post.component';
    CreateCommentComponent,
    ImagesComponent,
    PostComponent
-
-
   ],
   imports: [
     CommonModule,

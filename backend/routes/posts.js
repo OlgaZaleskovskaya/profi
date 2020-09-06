@@ -132,7 +132,7 @@ router.get("", (req, res, next) => {
   postQuery
     .then(documents => {
       fetchedPosts = documents;
-      // console.log('document', fetchedPosts[0].imageData);
+     console.log('document', fetchedPosts);
       return filterQuery.count();
     })
     .then(count => {

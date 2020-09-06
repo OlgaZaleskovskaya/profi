@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription} from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
-import * as AuthActions from '../auth/store/auth.actions';
 import { Category } from './category.model';
 import * as CategoriesActions from './store/categories.actions';
 
@@ -31,7 +29,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.vis = true;
+
     this.currentCategoryIndex = -1;
     this.categoriesList = [];
     this.store.dispatch(new CategoriesActions.GetCategories());
@@ -60,10 +58,12 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   onTagSelected(tag: string) {
     this.currentTag = tag;
-    this.store.dispatch(new CategoriesActions.SelectTag({ postsPerPage: this.postsPerPage, currentPage: 1, currentTag: tag }));
+    this.store.dispatch(new CategoriesActions.SelectTag({ postsPerPage: this.postsPerPage, currentPage: 1, 
+      currentTag: tag }));
   }
 
   onRemoveFilters(){
+    this.currentTag = '';
     this.store.dispatch(new CategoriesActions.SelectTag({ postsPerPage: this.postsPerPage, currentPage: 1, currentTag: '' }));
 
   }

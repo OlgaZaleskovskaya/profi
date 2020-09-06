@@ -1,27 +1,36 @@
 # Profi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.2.
+Project developed in version 9.1.2. with  SCSS and Angular Material.
+NgRX is used for state control
 
-## Development server
+Project contains back-end part developed using NodeJS v.14.0.0, Nodemon and Express.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+Install Express and Nodemon using commands:
+npm install --save express
+npm install --save-dev nodemon
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+In order to use nodemon add the "start:server": "nodemon server.js" to the package.json file:
+   "scripts": {
+    //...,
+    "start:server": "nodemon server.js"
+  },
 
-## Build
+Pay attention that NodeJS uses port 3000 for server.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Start back-end part by command:
+npm run start:server
 
-## Running unit tests
+Sharp and Image-Size are  used for for handling images uploading and downloading
+npm install sharp
+npm install image-size --save
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Multer is used for handling multipart/form-data
+npm install --save multer
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Start Angular project by command:
+ng serve
 
-## Further help
+Check the result on localhost:4200
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

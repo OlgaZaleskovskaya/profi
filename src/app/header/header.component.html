@@ -7,7 +7,6 @@
   <button mat-button routerLink="/auth/login" *ngIf="!isAuthenticated">Log In</button>
   <button mat-button routerLink="/auth/signup" *ngIf="!isAuthenticated">Sign Up</button>
   <button mat-button (click)="onLogout()" *ngIf="isAuthenticated">Log Out</button>
-  <!--   <button mat-button  (click)="openLoginDialog()">Enter</button> -->
   <button mat-button (click)="onCreateCategory()">Create Category</button>
   <button mat-button (click)="onUpdateCategory()">Update Category</button>
   <span><a routerLink='/personal' routerLinkActive="active" *ngIf="isAuthenticated && userRole == 'master'">Personal Page</a></span>
